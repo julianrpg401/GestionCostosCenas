@@ -8,10 +8,10 @@ namespace GestionCostosCenas
 {
     internal class BirthdayDinner : Dinner
     {
-        private string cakeSize;
-        private string cakeText;
+        private string? cakeSize;
+        private string? cakeText;
 
-        public string CakeSize { get => cakeSize; set => cakeSize = value; }
-        public string CakeText { get => cakeText; set => cakeText = value; }
+        public string? CakeSize { get => cakeSize; set => cakeSize = value; }
+        public string? CakeText { get => cakeText; set => cakeText = value; }
     }
 }
