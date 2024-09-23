@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            chkHealthyMenu = new CheckBox();
             btnCalculateTotal = new Button();
             txtCostFoodPerson = new TextBox();
             lblCostFoodPerson = new Label();
@@ -40,23 +39,14 @@
             txtNumPeople = new TextBox();
             lblNumPeople = new Label();
             lblExceptionPeople = new Label();
+            lblExceptionCakeText = new Label();
+            lblExceptionCostFoodPerson = new Label();
             SuspendLayout();
-            // 
-            // chkHealthyMenu
-            // 
-            chkHealthyMenu.AutoSize = true;
-            chkHealthyMenu.Location = new Point(304, 382);
-            chkHealthyMenu.Margin = new Padding(4, 5, 4, 5);
-            chkHealthyMenu.Name = "chkHealthyMenu";
-            chkHealthyMenu.Size = new Size(163, 29);
-            chkHealthyMenu.TabIndex = 27;
-            chkHealthyMenu.Text = "Menu saludable";
-            chkHealthyMenu.UseVisualStyleBackColor = true;
             // 
             // btnCalculateTotal
             // 
             btnCalculateTotal.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnCalculateTotal.Location = new Point(204, 463);
+            btnCalculateTotal.Location = new Point(188, 479);
             btnCalculateTotal.Margin = new Padding(4, 5, 4, 5);
             btnCalculateTotal.Name = "btnCalculateTotal";
             btnCalculateTotal.Size = new Size(220, 75);
@@ -67,17 +57,18 @@
             // 
             // txtCostFoodPerson
             // 
-            txtCostFoodPerson.Location = new Point(347, 164);
+            txtCostFoodPerson.Location = new Point(347, 133);
             txtCostFoodPerson.Margin = new Padding(4, 5, 4, 5);
             txtCostFoodPerson.Name = "txtCostFoodPerson";
             txtCostFoodPerson.Size = new Size(141, 31);
             txtCostFoodPerson.TabIndex = 25;
+            txtCostFoodPerson.TextChanged += txtCostFoodPerson_TextChanged;
             // 
             // lblCostFoodPerson
             // 
             lblCostFoodPerson.AutoSize = true;
             lblCostFoodPerson.Font = new Font("Microsoft Sans Serif", 9.749999F);
-            lblCostFoodPerson.Location = new Point(80, 166);
+            lblCostFoodPerson.Location = new Point(80, 135);
             lblCostFoodPerson.Margin = new Padding(4, 0, 4, 0);
             lblCostFoodPerson.Name = "lblCostFoodPerson";
             lblCostFoodPerson.Size = new Size(173, 25);
@@ -91,6 +82,7 @@
             txtCakeText.Name = "txtCakeText";
             txtCakeText.Size = new Size(141, 31);
             txtCakeText.TabIndex = 23;
+            txtCakeText.TextChanged += txtCakeText_TextChanged;
             // 
             // lblCakeText
             // 
@@ -112,6 +104,7 @@
             cmbCakeSize.Name = "cmbCakeSize";
             cmbCakeSize.Size = new Size(141, 33);
             cmbCakeSize.TabIndex = 21;
+            cmbCakeSize.SelectedIndexChanged += cmbCakeSize_SelectedIndexChanged;
             // 
             // lblCakeSize
             // 
@@ -127,13 +120,14 @@
             // chkDecoration
             // 
             chkDecoration.AutoSize = true;
-            chkDecoration.Location = new Point(110, 382);
+            chkDecoration.Location = new Point(246, 399);
             chkDecoration.Margin = new Padding(4, 5, 4, 5);
             chkDecoration.Name = "chkDecoration";
             chkDecoration.Size = new Size(127, 29);
             chkDecoration.TabIndex = 19;
             chkDecoration.Text = "Decoración";
             chkDecoration.UseVisualStyleBackColor = true;
+            chkDecoration.CheckedChanged += chkDecoration_CheckedChanged;
             // 
             // txtNumPeople
             // 
@@ -158,18 +152,35 @@
             // lblExceptionPeople
             // 
             lblExceptionPeople.AutoSize = true;
-            lblExceptionPeople.Location = new Point(347, 109);
+            lblExceptionPeople.Location = new Point(347, 93);
             lblExceptionPeople.Name = "lblExceptionPeople";
             lblExceptionPeople.Size = new Size(0, 25);
             lblExceptionPeople.TabIndex = 28;
+            // 
+            // lblExceptionCakeText
+            // 
+            lblExceptionCakeText.AutoSize = true;
+            lblExceptionCakeText.Location = new Point(347, 340);
+            lblExceptionCakeText.Name = "lblExceptionCakeText";
+            lblExceptionCakeText.Size = new Size(0, 25);
+            lblExceptionCakeText.TabIndex = 29;
+            // 
+            // lblExceptionCostFoodPerson
+            // 
+            lblExceptionCostFoodPerson.AutoSize = true;
+            lblExceptionCostFoodPerson.Location = new Point(347, 169);
+            lblExceptionCostFoodPerson.Name = "lblExceptionCostFoodPerson";
+            lblExceptionCostFoodPerson.Size = new Size(0, 25);
+            lblExceptionCostFoodPerson.TabIndex = 30;
             // 
             // BirthdayDinnerForm
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(620, 593);
+            ClientSize = new Size(844, 593);
+            Controls.Add(lblExceptionCostFoodPerson);
+            Controls.Add(lblExceptionCakeText);
             Controls.Add(lblExceptionPeople);
-            Controls.Add(chkHealthyMenu);
             Controls.Add(btnCalculateTotal);
             Controls.Add(txtCostFoodPerson);
             Controls.Add(lblCostFoodPerson);
@@ -188,8 +199,6 @@
         }
 
         #endregion
-
-        private CheckBox chkHealthyMenu;
         private Button btnCalculateTotal;
         private TextBox txtCostFoodPerson;
         private Label lblCostFoodPerson;
@@ -201,5 +210,7 @@
         private TextBox txtNumPeople;
         private Label lblNumPeople;
         private Label lblExceptionPeople;
+        private Label lblExceptionCakeText;
+        private Label lblExceptionCostFoodPerson;
     }
 }
