@@ -52,9 +52,7 @@ namespace GestionCostosCenas
         }
 
         private void cmbCakeSize_SelectedIndexChanged(object sender, EventArgs e)
-        {
-            cakeSize = (byte)cmbCakeSize.SelectedIndex;
-        }
+            => cakeSize = (byte)cmbCakeSize.SelectedIndex;
 
         private void txtCakeText_TextChanged(object sender, EventArgs e)
         {
@@ -71,13 +69,13 @@ namespace GestionCostosCenas
         }
 
         private void chkDecoration_CheckedChanged(object sender, EventArgs e)
-        {
-            decoration = chkDecoration.Checked;
-        }
+            => decoration = chkDecoration.Checked;
 
         private void btnCalculateTotal_Click(object sender, EventArgs e)
         {
-            Dinner birthdayDinner = new BirthdayDinner();
+            Dinner birthdayDinner = new BirthdayDinner(cakeSize, cakeText, numPeople, costFoodPerson, decoration);
+            double costDecoration = birthdayDinner.CalculateDecorationCost(numPeople, decoration);
+            double costCake = birthdayDinner.CalculateCostCake(cakeSize);
         }
     }
 }

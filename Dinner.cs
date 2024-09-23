@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GestionCostosCenas
 {
-    internal class Dinner
+    internal abstract class Dinner
     {
         private int numPeople;
         private double costDecoration;
@@ -19,5 +19,18 @@ namespace GestionCostosCenas
         public double ExtraBonus { get => extraBonus; set => extraBonus = value; }
         public double CostFoodPerson { get => costFoodPerson; set => costFoodPerson = value; }
         public bool Decoration { get => decoration; set => decoration = value; }
+
+        public Dinner(int numPeople, double costFoodPerson, bool decoration)
+        {
+            this.numPeople = numPeople;
+            costDecoration = 0;
+            extraBonus = 0;
+            this.costFoodPerson = costFoodPerson;
+            this.decoration = decoration;
+        }
+
+        public abstract double CalculateDecorationCost(int numPeople, bool decoration);
+        //public abstract double CalculateCostCake(byte cakeSize);
+        //public abstract double CalculateTotalCost();
     }
 }
