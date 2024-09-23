@@ -36,19 +36,21 @@
             // lblTitle
             // 
             lblTitle.AutoSize = true;
-            lblTitle.Font = new Font("Montserrat", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblTitle.Location = new Point(242, 31);
+            lblTitle.Font = new Font("Microsoft Sans Serif", 15.75F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblTitle.Location = new Point(142, 94);
+            lblTitle.Margin = new Padding(4, 0, 4, 0);
             lblTitle.Name = "lblTitle";
-            lblTitle.Size = new Size(327, 29);
+            lblTitle.Size = new Size(453, 37);
             lblTitle.TabIndex = 0;
             lblTitle.Text = "Sistema de gestión de cenas";
             // 
             // btnGalaDinner
             // 
-            btnGalaDinner.Font = new Font("Montserrat SemiBold", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnGalaDinner.Location = new Point(497, 200);
+            btnGalaDinner.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnGalaDinner.Location = new Point(89, 247);
+            btnGalaDinner.Margin = new Padding(4, 5, 4, 5);
             btnGalaDinner.Name = "btnGalaDinner";
-            btnGalaDinner.Size = new Size(154, 45);
+            btnGalaDinner.Size = new Size(220, 75);
             btnGalaDinner.TabIndex = 17;
             btnGalaDinner.Text = "CENA DE GALA";
             btnGalaDinner.UseVisualStyleBackColor = true;
@@ -56,10 +58,11 @@
             // 
             // btnBirthdayDinner
             // 
-            btnBirthdayDinner.Font = new Font("Montserrat SemiBold", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnBirthdayDinner.Location = new Point(484, 327);
+            btnBirthdayDinner.Font = new Font("Microsoft Sans Serif", 8.999999F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnBirthdayDinner.Location = new Point(443, 247);
+            btnBirthdayDinner.Margin = new Padding(4, 5, 4, 5);
             btnBirthdayDinner.Name = "btnBirthdayDinner";
-            btnBirthdayDinner.Size = new Size(154, 45);
+            btnBirthdayDinner.Size = new Size(220, 75);
             btnBirthdayDinner.TabIndex = 18;
             btnBirthdayDinner.Text = "CENA DE CUMPLEAÑOS";
             btnBirthdayDinner.UseVisualStyleBackColor = true;
@@ -67,12 +70,13 @@
             // 
             // Inicio
             // 
-            AutoScaleDimensions = new SizeF(7F, 15F);
+            AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 502);
+            ClientSize = new Size(743, 417);
             Controls.Add(btnBirthdayDinner);
             Controls.Add(btnGalaDinner);
             Controls.Add(lblTitle);
+            Margin = new Padding(4, 5, 4, 5);
             Name = "Inicio";
             Text = "INICIO";
             ResumeLayout(false);
