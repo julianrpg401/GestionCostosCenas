@@ -74,8 +74,10 @@ namespace GestionCostosCenas
         private void btnCalculateTotal_Click(object sender, EventArgs e)
         {
             Dinner birthdayDinner = new BirthdayDinner(cakeSize, cakeText, numPeople, costFoodPerson, decoration);
-            double costDecoration = birthdayDinner.CalculateDecorationCost(numPeople, decoration);
-            double costCake = birthdayDinner.CalculateCostCake(cakeSize);
+
+            double costDecoration = birthdayDinner.CalculateDecorationCost();
+            double costCake = birthdayDinner.CalculateCostCake();
+            double totalCost = birthdayDinner.CalculateTotalCost(costCake);
         }
     }
 }

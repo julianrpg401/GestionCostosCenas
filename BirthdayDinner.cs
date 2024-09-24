@@ -20,14 +20,12 @@ namespace GestionCostosCenas
             this.cakeText = cakeText;
         }
 
-        public override double CalculateDecorationCost(int numPeople, bool decoration)
+        public override double CalculateDecorationCost()
         {
-            Decoration = decoration;
-
             if (Decoration == true)
             {
                 int decorationCostPerson = 15;
-                CostDecoration = decorationCostPerson * numPeople;
+                CostDecoration = decorationCostPerson * NumPeople;
 
                 return CostDecoration;
             }
@@ -35,11 +33,38 @@ namespace GestionCostosCenas
                 return 0;
         }
 
-        public double CalculateCostCake(byte cakeSize)
+        public override double CalculateCostCake()
         {
-            double costCake = cakeSize * 50;
+            double costCake = CakeSize * 50;
 
             return costCake;
+        }
+
+        public override double CalculateTotalCost(double costCake)
+        {
+            double totalCost;
+
+            totalCost = (CostFoodPerson * NumPeople) + costCake;
+
+            if (Decoration == true)
+            {
+                totalCost += CostDecoration;
+            }
+
+            if (totalCost > 0)
+            {
+                if (totalCost > 1000)
+                {
+                    ExtraBonus = totalCost * 0.2;
+                    totalCost -= ExtraBonus;
+
+                    return totalCost;
+                }
+                else
+                    return totalCost;
+            }
+            else
+                return totalCost;
         }
     }
 }

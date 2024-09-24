@@ -29,8 +29,8 @@ namespace GestionCostosCenas
             this.decoration = decoration;
         }
 
-        public abstract double CalculateDecorationCost(int numPeople, bool decoration);
-        //public abstract double CalculateCostCake(byte cakeSize);
-        //public abstract double CalculateTotalCost();
+        public abstract double CalculateDecorationCost();
+        public abstract double CalculateCostCake();
+        public abstract double CalculateTotalCost(double costCake);
     }
 }
