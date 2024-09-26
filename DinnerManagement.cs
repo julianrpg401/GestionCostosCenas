@@ -22,11 +22,11 @@ namespace GestionCostosCenas
             return null;
         }
 
-        public static Dinner CreateDinner(double averageCostPerson, int numPeople, double costFoodPerson, bool decoration, bool healthyOption)
+        public static Dinner CreateDinner(int numPeople, double costFoodPerson, bool decoration, bool healthyOption)
         {
             try
             {
-                return new GalaDinner(averageCostPerson, numPeople, costFoodPerson, decoration, healthyOption);
+                return new GalaDinner(numPeople, costFoodPerson, decoration, healthyOption);
             }
             catch (Exception ex)
             {

@@ -33,7 +33,7 @@ namespace GestionCostosCenas
                 return 0;
         }
 
-        public override double CalculateCostCake()
+        public double CalculateCostCake()
         {
             double costCake = CakeSize * 50;
 
@@ -42,29 +42,36 @@ namespace GestionCostosCenas
 
         public override double CalculateTotalCost(double costCake)
         {
-            double totalCost;
-
-            totalCost = (CostFoodPerson * NumPeople) + costCake;
-
-            if (Decoration == true)
+            try
             {
-                totalCost += CostDecoration;
-            }
+                double totalCost;
 
-            if (totalCost > 0)
-            {
-                if (totalCost > 1000)
+                totalCost = (CostFoodPerson * NumPeople) + costCake;
+
+                if (Decoration == true)
                 {
-                    ExtraBonus = totalCost * 0.2;
-                    totalCost -= ExtraBonus;
+                    totalCost += CostDecoration;
+                }
 
-                    return totalCost;
+                if (totalCost > 0)
+                {
+                    if (totalCost > 1000)
+                    {
+                        ExtraBonus = totalCost * 0.2;
+                        totalCost -= ExtraBonus;
+
+                        return totalCost;
+                    }
+                    else
+                        return totalCost;
                 }
                 else
                     return totalCost;
             }
-            else
-                return totalCost;
+            catch (Exception ex)
+            {
+                throw new InvalidOperationException("Error al calcular el costo total de la cena de cumpleaños", ex);
+            }
         }
     }
 }

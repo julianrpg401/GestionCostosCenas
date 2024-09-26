@@ -30,7 +30,6 @@ namespace GestionCostosCenas
         }
 
         public abstract double CalculateDecorationCost();
-        public abstract double CalculateCostCake();
-        public abstract double CalculateTotalCost(double costCake);
+        public abstract double CalculateTotalCost(double cost);
     }
 }

@@ -25,15 +25,22 @@ namespace GestionCostosCenas
 
         private void txtNumPeople_TextChanged(object sender, EventArgs e)
         {
-            lblExceptionPeople.Text = "";
-
-            if (!int.TryParse(txtNumPeople.Text, out numPeople))
-                lblExceptionPeople.Text = "Campo obligatorio";
-
-            else if (numPeople < 1 || numPeople > 500)
+            try
             {
-                lblExceptionPeople.Text = "Ingrese un número mayor a 1 e inferior a 500";
-                lblExceptionPeople.ForeColor = Color.Red;
+                lblExceptionPeople.Text = "";
+
+                if (!int.TryParse(txtNumPeople.Text, out numPeople))
+                    lblExceptionPeople.Text = "Campo obligatorio";
+
+                else if (numPeople < 1 || numPeople > 500)
+                {
+                    lblExceptionPeople.Text = "Ingrese un número mayor a 1 e inferior a 500";
+                    lblExceptionPeople.ForeColor = Color.Red;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al procesar el número de personas: {ex.Message}");
             }
         }
 
@@ -76,16 +83,28 @@ namespace GestionCostosCenas
 
         private void btnCalculateTotal_Click(object sender, EventArgs e)
         {
-            Dinner birthdayDinner = DinnerManagement.CreateDinner(cakeSize, cakeText, numPeople, costFoodPerson, decoration);
+            try
+            {
+                BirthdayDinner birthdayDinner = (BirthdayDinner)DinnerManagement.CreateDinner(cakeSize, cakeText, numPeople, costFoodPerson, decoration);
 
-            double costDecoration = birthdayDinner.CalculateDecorationCost();
-            double costCake = birthdayDinner.CalculateCostCake();
-            double totalCost = birthdayDinner.CalculateTotalCost(costCake);
+                double costDecoration = birthdayDinner.CalculateDecorationCost();
+                double costCake = birthdayDinner.CalculateCostCake();
+                double totalCost = birthdayDinner.CalculateTotalCost(costCake);
 
-            if (totalCost > 0)
-                MessageBox.Show($"El costo total de la cena es de: ${totalCost}");
-            else
-                MessageBox.Show($"Error al calcular el costo total, el valor no puede ser negativo");
+                if (totalCost > 0)
+                {
+                    if (totalCost < 100)
+                        MessageBox.Show("La cena debe tener un costo mínimo de $100");
+                    else
+                        MessageBox.Show($"El costo total de la cena es de: ${totalCost}");
+                }
+                else
+                    MessageBox.Show($"Error al calcular el costo total, el valor no puede ser negativo");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error en el cálculo del costo total: {ex.Message}");
+            }
         }
     }
 }

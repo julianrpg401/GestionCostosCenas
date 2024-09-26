@@ -16,7 +16,6 @@ namespace GestionCostosCenas
         private double costFoodPerson;
         private bool decoration;
         private bool healthyOption;
-        double averageCostPerson;
 
         public GalaDinnerForm()
         {
@@ -25,15 +24,22 @@ namespace GestionCostosCenas
 
         private void txtNumPeople_TextChanged(object sender, EventArgs e)
         {
-            lblExceptionPeople.Text = "";
-
-            if (!int.TryParse(txtNumPeople.Text, out numPeople))
-                lblExceptionPeople.Text = "Campo obligatorio";
-
-            else if (numPeople < 1 || numPeople > 500)
+            try
             {
-                lblExceptionPeople.Text = "Ingrese un número mayor a 1 e inferior a 500";
-                lblExceptionPeople.ForeColor = Color.Red;
+                lblExceptionPeople.Text = "";
+
+                if (!int.TryParse(txtNumPeople.Text, out numPeople))
+                    lblExceptionPeople.Text = "Campo obligatorio";
+
+                else if (numPeople < 1 || numPeople > 500)
+                {
+                    lblExceptionPeople.Text = "Ingrese un número mayor a 1 e inferior a 500";
+                    lblExceptionPeople.ForeColor = Color.Red;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error al procesar el número de personas: {ex.Message}");
             }
         }
 
@@ -48,6 +54,9 @@ namespace GestionCostosCenas
             {
                 lblExceptionCostFoodPerson.Text = "El costo por persona no puede ser menor a $10 ni mayor a $500";
                 lblExceptionCostFoodPerson.ForeColor = Color.Red;
+
+                if (costFoodPerson < 50)
+                    chkHealthyOption.Enabled = false;
             }
         }
 
@@ -59,9 +68,28 @@ namespace GestionCostosCenas
 
         private void btnCalculateTotal_Click(object sender, EventArgs e)
         {
-            Dinner galaDinner = DinnerManagement.CreateDinner(averageCostPerson, numPeople, costFoodPerson, decoration, healthyOption);
+            try
+            {
+                GalaDinner galaDinner = (GalaDinner)DinnerManagement.CreateDinner(numPeople, costFoodPerson, decoration, healthyOption);
 
+                double costDecoration = galaDinner.CalculateDecorationCost();
+                double costHealthyOption = galaDinner.SetHealthyOptional();
+                double totalCost = galaDinner.CalculateTotalCost(costHealthyOption);
 
+                if (totalCost > 0)
+                {
+                    if (totalCost < 100)
+                        MessageBox.Show("La cena debe tener un costo mínimo de $100");
+                    else
+                        MessageBox.Show($"El costo total de la cena es de: ${totalCost}");
+                }
+                else
+                    MessageBox.Show($"Error al calcular el costo total, el valor no puede ser negativo");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error en el cálculo del costo total: {ex.Message}");
+            }
         }
     }
 }
