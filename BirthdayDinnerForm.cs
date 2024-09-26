@@ -52,7 +52,10 @@ namespace GestionCostosCenas
         }
 
         private void cmbCakeSize_SelectedIndexChanged(object sender, EventArgs e)
-            => cakeSize = (byte)cmbCakeSize.SelectedIndex;
+        {
+            cakeSize = (byte)cmbCakeSize.SelectedIndex;
+            cakeSize += 1;
+        }
 
         private void txtCakeText_TextChanged(object sender, EventArgs e)
         {
@@ -73,11 +76,16 @@ namespace GestionCostosCenas
 
         private void btnCalculateTotal_Click(object sender, EventArgs e)
         {
-            Dinner birthdayDinner = new BirthdayDinner(cakeSize, cakeText, numPeople, costFoodPerson, decoration);
+            Dinner birthdayDinner = DinnerManagement.CreateDinner(cakeSize, cakeText, numPeople, costFoodPerson, decoration);
 
             double costDecoration = birthdayDinner.CalculateDecorationCost();
             double costCake = birthdayDinner.CalculateCostCake();
             double totalCost = birthdayDinner.CalculateTotalCost(costCake);
+
+            if (totalCost > 0)
+                MessageBox.Show($"El costo total de la cena es de: ${totalCost}");
+            else
+                MessageBox.Show($"Error al calcular el costo total, el valor no puede ser negativo");
         }
     }
 }
