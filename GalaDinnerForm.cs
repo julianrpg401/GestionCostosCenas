@@ -47,6 +47,8 @@ namespace GestionCostosCenas
         {
             lblExceptionCostFoodPerson.Text = "";
 
+            chkHealthyOption.Enabled = true;
+
             if (!double.TryParse(txtCostFoodPerson.Text, out costFoodPerson))
                 lblExceptionCostFoodPerson.Text = "Campo obligatorio";
 
@@ -54,10 +56,10 @@ namespace GestionCostosCenas
             {
                 lblExceptionCostFoodPerson.Text = "El costo por persona no puede ser menor a $10 ni mayor a $500";
                 lblExceptionCostFoodPerson.ForeColor = Color.Red;
-
-                if (costFoodPerson < 50)
-                    chkHealthyOption.Enabled = false;
             }
+
+            if (costFoodPerson < 50)
+                chkHealthyOption.Enabled = false;
         }
 
         private void chkDecoration_CheckedChanged(object sender, EventArgs e)
